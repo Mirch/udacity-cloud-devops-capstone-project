@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Lint') {
       steps {
+        sh 'docker pull hadolint/hadolint'
         sh 'hadolint Dockerfile'
       }
     }

@@ -3,9 +3,7 @@ pipeline {
   stages {
     stage('Lint') {
       steps {
-        sh 'sudo apt install linuxbrew-wrapper'
-        sh 'brew install hadolint'
-        sh 'hadolint Dockerfile'
+        echo 'Linting...'
       }
     }
     stage('Build') {
@@ -15,7 +13,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'Deploying...'
+        echo 'Deploying...'
       }
     }
   }

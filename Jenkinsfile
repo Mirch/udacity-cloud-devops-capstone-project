@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Lint') {
       steps {
-        sh 'apt install linuxbrew-wrapper'
+        sh 'sudo apt install linuxbrew-wrapper'
         sh 'brew install hadolint'
         sh 'hadolint Dockerfile'
       }

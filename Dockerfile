@@ -1,6 +1,5 @@
 # Stage 1
 FROM node:8 as react-build
-%$#!@$!@$Terg=====
 WORKDIR /app
 COPY . ./
 RUN yarn

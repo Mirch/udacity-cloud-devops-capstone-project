@@ -20,7 +20,7 @@ node {
     }
     stage('Deploy'){
       docker.withRegistry( 'https://' + registry, registryCredential ) {
-    	  newApp.push 'latest2'
+    	  capstoneApp.push 'latest2'
       }
     }
   }

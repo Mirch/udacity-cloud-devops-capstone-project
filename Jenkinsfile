@@ -1,17 +1,21 @@
 node {
     def registry = 'mirch/udacity-capstone-project'
     stage('Checkout') {
+      echo 'Checkout...'
       checkout scm
     }
     stage('Environment') {
+      echo 'Checking environment...'
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
       sh 'docker -v'
     }
     stage("Linting") {
-    	sh "hadolint Dockerfile"
+	echo 'Linting...'
+    	sh 'hadolint Dockerfile'
     }
     stage('Building image') {
+	    echo 'Building Docker image...'
       withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 	      sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	      sh "docker build -t ${registry} ."

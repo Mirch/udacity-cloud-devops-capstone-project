@@ -13,14 +13,14 @@ node {
       sh 'docker -v'
     }
     stage('Building image') {
-      docker.withRegistry( 'https://' + registry, registryCredential ) {
+      docker.withRegistry( 'https://docker.io/' + registry, registryCredential ) {
 		  def buildName = registry + ":$BUILD_NUMBER"
 			capstoneApp = docker.build buildName
 			capstoneApp.push()
       }
     }
     stage('Deploy'){
-      docker.withRegistry( 'https://' + registry, registryCredential ) {
+      docker.withRegistry( 'https://docker.io/' + registry, registryCredential ) {
     	  capstoneApp.push 'latest2'
       }
     }

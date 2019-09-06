@@ -1,4 +1,9 @@
 node {
+  environment {
+    registry = "mirch/udacity-capstone-project"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
   try {
     stage('Checkout') {
       checkout scm
@@ -10,7 +15,9 @@ node {
       sh 'printenv'
     }
     stage('Deploy'){
-        sh './run_docker.sh'
+        docker.withRegistry('', registryCredential) {
+            dockerImage.push()
+          }
     }
   }
   catch (err) {

@@ -17,6 +17,7 @@ node {
 		  def buildName = registry + ":$BUILD_NUMBER"
 			capstoneApp = docker.build buildName
 			capstoneApp.push()
+      }
     }
     stage('Deploy'){
       docker.withRegistry( 'https://' + registry, registryCredential ) {

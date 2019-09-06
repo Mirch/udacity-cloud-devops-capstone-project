@@ -8,6 +8,9 @@ node {
       echo "Branch: ${env.BRANCH_NAME}"
       sh 'docker -v'
     }
+    stage("Linting") {
+    	sh "hadolint Dockerfile"
+    }
     stage('Building image') {
       withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 	      sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"

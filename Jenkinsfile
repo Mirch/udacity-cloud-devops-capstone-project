@@ -14,9 +14,10 @@ node {
     }
     stage('Building image') {
       docker.withRegistry( 'https://docker.io/' + registry, registryCredential ) {
-		  def buildName = registry + ":$BUILD_NUMBER"
-			capstoneApp = docker.build buildName
-			capstoneApp.push()
+	      sh 'docker build -t ${registry}'
+	      sh 'docker tag ${registry} ${registry}'
+	      sh 'docker push ${registry}'
+	      
       }
     }
     stage('Deploy'){

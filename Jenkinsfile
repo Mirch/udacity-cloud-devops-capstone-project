@@ -1,9 +1,5 @@
 node {
-    def capstoneApp
     def registry = 'mirch/udacity-capstone-project'
-    def registryCredential = 'dockerhub'
-  
-  try {
     stage('Checkout') {
       checkout scm
     }
@@ -20,9 +16,4 @@ node {
 	      sh "docker push ${registry}"
       }
     }
-  }
-  catch (err) {
-    throw err
-  }
 }
-Do

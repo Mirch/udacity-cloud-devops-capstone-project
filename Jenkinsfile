@@ -1,6 +1,6 @@
 node {
     def capstoneApp
-    def registry = 'mirch/udacity-caphstone-project'
+    def registry = 'mirch/udacity-capstone-project'
     def registryCredential = 'dockerhub'
   
   try {

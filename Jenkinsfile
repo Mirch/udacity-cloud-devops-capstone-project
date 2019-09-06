@@ -13,7 +13,7 @@ node {
     stage("Linting") {
 	echo 'Linting...'
 	sh 'pwd'
-    	sh 'hadolint Dockerfile'
+    	sh '/home/ubuntu/.local/bin/hadolint Dockerfile'
     }
     stage('Building image') {
 	    echo 'Building Docker image...'

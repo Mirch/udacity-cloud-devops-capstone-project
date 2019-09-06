@@ -13,7 +13,7 @@ node {
       sh 'docker -v'
     }
     stage('Building image') {
-      docker.withRegistry( 'https://docker.io/' + registry, registryCredential ) {
+      docker.withRegistry( registry, registryCredential ) {
 	      sh "docker build -t ${registry} ."
 	      sh "docker tag ${registry} ${registry}"
 	      sh "docker push ${registry}"

@@ -1,9 +1,8 @@
 node {
-  environment {
-    registry = "mirch/udacity-capstone-project"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
+    def capstoneApp
+    def registry = 'mirch/udacity-caphstone-project'
+    def registryCredential = 'dockerhub'
+  
   try {
     stage('Checkout') {
       checkout scm
@@ -12,13 +11,17 @@ node {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
       sh 'docker -v'
-      sh 'printenv'
+    }
+    stage('Building image') {
+      docker.withRegistry( 'https://' + registry, registryCredential ) {
+		  def buildName = registry + ":$BUILD_NUMBER"
+			capstoneApp = docker.build buildName
+			capstoneApp.push()
     }
     stage('Deploy'){
-       dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        docker.withRegistry('', registryCredential) {
-            dockerImage.push()
-          }
+      docker.withRegistry( 'https://' + registry, registryCredential ) {
+    	  newApp.push 'latest2'
+      }
     }
   }
   catch (err) {

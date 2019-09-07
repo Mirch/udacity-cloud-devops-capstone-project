@@ -93,6 +93,7 @@ Resources:
       RouteTableId: !Ref RouteTable
   DefaultSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    GroupDescription: Default security group for EKS.
     Properties:
       VpcId: !Ref VPC
 Outputs:

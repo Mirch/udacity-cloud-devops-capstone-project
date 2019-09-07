@@ -6,6 +6,6 @@
     },
     {
         "ParameterKey": "SshKey",
-        "ParameterValue": "mircea-proj-5.pem"
+        "ParameterValue": "mircea-proj-5"
     }
 ]

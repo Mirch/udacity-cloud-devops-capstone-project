@@ -91,7 +91,7 @@ Resources:
     Properties:
       SubnetId: !Ref Subnet3
       RouteTableId: !Ref RouteTable
-  SecurityGroup:
+  DefaultSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: !Ref VPC
@@ -105,4 +105,4 @@ Outputs:
       - !Join [ ",", [ !Ref Subnet1, !Ref Subnet2, !Ref Subnet3 ] ]
   SecurityGroup:
     Description: Cluster security group.
-    Value: !Ref SecurityGroup
+    Value: !Ref DefaultSecurityGroup

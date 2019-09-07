@@ -50,9 +50,10 @@ Resources:
           ToPort: 65535
           CidrIp: 0.0.0.0/0
       Tags:
-      - Key: !Sub 
-        -"kubernetes.io/cluster/${EksId}"
-        - EksId: !ImportValue EksId
+      - Key: 
+            !Sub 
+                - "kubernetes.io/cluster/${EksId}"
+                - EksId: !ImportValue EksId
         Value: 'owned'
   NodesGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
@@ -65,13 +66,15 @@ Resources:
         !Ref Subnets
       Tags:
       - Key: Name
-        Value: !Sub 
-          - "${EksId}-CapstoneNodesGroup-Node"
-          - EksId: !ImportValue EksId
+        Value: 
+            !Sub 
+                - "${EksId}-CapstoneNodesGroup-Node"
+                - EksId: !ImportValue EksId
         PropagateAtLaunch: 'true'
-      - Key: !Sub 
-        - 'kubernetes.io/cluster/${EksId}'
-        - EksId: !ImportValue EksId
+      - Key: 
+            !Sub 
+                - 'kubernetes.io/cluster/${EksId}'
+                - EksId: !ImportValue EksId
         Value: 'owned'
         PropagateAtLaunch: 'true'
     UpdatePolicy:
@@ -98,15 +101,15 @@ Resources:
       UserData:
         Fn::Base64:
           !Sub 
-          - |
-            #!/bin/bash
-            set -o xtrace
-            /etc/eks/bootstrap.sh ${EksId}
-            /opt/aws/bin/cfn-signal --exit-code $? \
-                     --stack  ${AWS::StackName} \
-                     --resource NodesGroup  \
-                     --region ${AWS::Region}
-          - EksId: !ImportValue EksId
+              - |
+                #!/bin/bash
+                set -o xtrace
+                /etc/eks/bootstrap.sh ${EksId}
+                /opt/aws/bin/cfn-signal --exit-code $? \
+                         --stack  ${AWS::StackName} \
+                         --resource NodesGroup  \
+                         --region ${AWS::Region}
+              - EksId: !ImportValue EksId
 Outputs:
   InstanceRole:
     Description: The node instance role

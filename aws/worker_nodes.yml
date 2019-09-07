@@ -53,7 +53,9 @@ Resources:
       - Key: 
             !Sub 
                 - "kubernetes.io/cluster/${EksId}"
-                - EksId: !ImportValue EksId
+                - EksId:
+                    Fn::ImportValue:
+                        !Sub "${EnvironmentName}-EKS"
         Value: 'owned'
   NodesGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
@@ -72,12 +74,16 @@ Resources:
         Value: 
             !Sub 
                 - "${EksId}-CapstoneNodesGroup-Node"
-                - EksId: !ImportValue EksId
+                - EksId:
+                    Fn::ImportValue:
+                        !Sub "${EnvironmentName}-EKS"
         PropagateAtLaunch: 'true'
       - Key: 
             !Sub 
                 - 'kubernetes.io/cluster/${EksId}'
-                - EksId: !ImportValue EksId
+                - EksId:
+                    Fn::ImportValue:
+                        !Sub "${EnvironmentName}-EKS"
         Value: 'owned'
         PropagateAtLaunch: 'true'
     UpdatePolicy:
@@ -112,7 +118,9 @@ Resources:
                          --stack  ${AWS::StackName} \
                          --resource NodesGroup  \
                          --region ${AWS::Region}
-              - EksId: !ImportValue EksId
+                - EksId:
+                    Fn::ImportValue:
+                        !Sub "${EnvironmentName}-EKS"
 Outputs:
   InstanceRole:
     Description: The node instance role

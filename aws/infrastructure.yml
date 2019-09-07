@@ -18,7 +18,6 @@ Parameters:
   Subnet3CIDR:
     Type: String
     Default: 192.168.192.0/18
-
 Resources:
   VPC:
     Type: AWS::EC2::VPC

@@ -103,6 +103,6 @@ Outputs:
     Description: The subnet ids.
     Value:
       - !Join [ ",", [ !Ref Subnet1, !Ref Subnet2, !Ref Subnet3 ] ]
-  SecurityGroups:
+  SecurityGroup:
     Description: Cluster security group.
-    Value: !Join [ ",", [ !Ref SecurityGroup ] ]
+    Value: !Ref SecurityGroup

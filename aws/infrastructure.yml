@@ -99,13 +99,16 @@ Outputs:
   VpcId:
     Description: The VPC id.
     Value: !Ref VPC
-    Export: !Sub ${EnvironmentName}-VPCID
+    Export: 
+        Name: !Sub ${EnvironmentName}-VPCID
   SubnetIds:
     Description: The subnet ids.
     Value:
       - !Join [ ",", [ !Ref Subnet1, !Ref Subnet2, !Ref Subnet3 ] ]
-    Export: !Sub ${EnvironmentName}-SBN-IDS
+    Export: 
+        Name: !Sub ${EnvironmentName}-SBN-IDS
   SecurityGroup:
     Description: Cluster security group.
     Value: !Ref DefaultSecurityGroup
-    Export: !Sub ${EnvironmentName}-SCG
+    Export: 
+        Name: !Sub ${EnvironmentName}-SCG

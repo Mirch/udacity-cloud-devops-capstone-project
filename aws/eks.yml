@@ -23,6 +23,7 @@ Outputs:
   EksId:
     Description: The EKS id.
     Value: !Ref CapstoneEKS
-    Export: !Sub ${EnvironmentName}-EKS
+    Export: 
+        Name: !Sub ${EnvironmentName}-EKS
 
 

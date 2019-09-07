@@ -1,7 +1,7 @@
 Description: >
     Capstone project for Cloud DevOps Engineering Nanodegree
     Author - Mircea Teodor Oprea
-    Creating the EKS and EC2 instances.
+    Creating the EKS cluster.
 Parameters:
   EnvironmentName:
     Description: An Environment name that will be prefixed to resources

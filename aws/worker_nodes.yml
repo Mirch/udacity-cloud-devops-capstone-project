@@ -63,7 +63,10 @@ Resources:
       MinSize: 1
       MaxSize: 4
       VPCZoneIdentifier:
-        !Ref Subnets
+        Fn::Split:
+            - ","
+            - Fn::ImportValue:
+                Fn::Sub: ${EnvironmentName}-SBN-IDS
       Tags:
       - Key: Name
         Value: 

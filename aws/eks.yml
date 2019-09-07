@@ -17,8 +17,10 @@ Resources:
         - Fn::ImportValue:
             !Sub "${EnvironmentName}-SCG"
         SubnetIds:
-        - Fn::ImportValue:
-             !Sub "${EnvironmentName}-SBN-IDS"
+            Fn::Split:
+                - ","
+                - Fn::ImportValue:
+                      Fn::Sub: ${EnvironmentName}-SBN-IDS
 Outputs:
   EksId:
     Description: The EKS id.

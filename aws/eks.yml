@@ -17,7 +17,7 @@ Resources:
         - Fn::Importvalue:
             !Sub "${EnvironmentName}-SCG"
         SubnetIds:
-            Fn::Importvalue:
+            Fn::ImportValue:
                 !Sub "${EnvironmentName}-SBN-IDS"
 Outputs:
   EksId:

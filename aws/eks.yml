@@ -1,0 +1,24 @@
+Description: >
+    Capstone project for Cloud DevOps Engineering Nanodegree
+    Author - Mircea Teodor Oprea
+    Creating the EKS and EC2 instances.
+Resources:
+  CapstoneEKS:
+    Type: AWS::EKS::Cluster
+    Properties:
+      Version: '1.13'
+      RoleArn: arn:aws:iam::358599436160:role/eks-role
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+        - Fn::Importvalue:
+            !Sub "${EnvironmentName}-SCG"
+        SubnetIds:
+        Fn::Importvalue:
+            !Sub "${EnvironmentName}-SBN-IDS"
+Outputs:
+  EksId:
+    Description: The EKS id.
+    Value: !Ref CapstoneEKS
+    Export: !Sub ${EnvironmentName}-EKS
+
+

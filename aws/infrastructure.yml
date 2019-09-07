@@ -58,7 +58,7 @@ Resources:
       Tags:
       - Key: Name
         Value: !Sub ${EnvironmentName} Public Subnet (AZ1) 
-  Subnet1:
+  Subnet2:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC

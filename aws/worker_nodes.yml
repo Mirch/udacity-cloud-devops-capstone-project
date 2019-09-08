@@ -57,10 +57,10 @@ Resources:
                     Fn::ImportValue:
                         !Sub "${EnvironmentName}-EKS"
         Value: 'owned'
-  NodesGroup:
+  NodesAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      DesiredCapacity: 3
+      DesiredCapacity: 2
       LaunchConfigurationName: !Ref LaunchConfiguration
       MinSize: 1
       MaxSize: 4
@@ -96,7 +96,7 @@ Resources:
     Properties:
       AssociatePublicIpAddress: 'true'
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: ami-0ac05733838eabc06
+      ImageId: ami-00aa4671cbf840d82
       InstanceType: t2.micro
       KeyName: !Ref SshKey
       SecurityGroups:
@@ -116,7 +116,7 @@ Resources:
                 /etc/eks/bootstrap.sh ${EksId}
                 /opt/aws/bin/cfn-signal --exit-code $? \
                          --stack  ${AWS::StackName} \
-                         --resource NodesGroup  \
+                         --resource NodesAutoScalingGroup  \
                          --region ${AWS::Region}
             - EksId:
                 Fn::ImportValue:

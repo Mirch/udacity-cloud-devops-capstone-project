@@ -27,7 +27,7 @@ node {
       echo 'Deploying to AWS...'
       dir ('./') {
         withAWS(credentials: 'aws-credentials', region: 'eu-central-1') {
-            withKubeConfig(serverUrl: 'https://61D2CCC75991D12A530D1EF702CC2BA8.sk1.eu-central-1.eks.amazonaws.com') {
+            withKubeConfig(credentialsId: 'aws-credentials', serverUrl: 'https://61D2CCC75991D12A530D1EF702CC2BA8.sk1.eu-central-1.eks.amazonaws.com') {
               sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
               sh "kubectl get nodes"
               sh "kubectl get pods"

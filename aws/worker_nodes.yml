@@ -9,6 +9,9 @@ Parameters:
   SshKey:
     Description: The EC2 Key Pair to allow SSH access to the instances
     Type: AWS::EC2::KeyPair::KeyName
+  DesiredInstances:
+    Description: How many instances should be created.
+    Type: Number
 Resources:
   InstanceProfile:
     Type: AWS::IAM::InstanceProfile
@@ -76,7 +79,7 @@ Resources:
   NodesAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      DesiredCapacity: 3
+      DesiredCapacity: !Sub ${DesiredInstances}
       LaunchConfigurationName: !Ref LaunchConfiguration
       MinSize: 1
       MaxSize: 4

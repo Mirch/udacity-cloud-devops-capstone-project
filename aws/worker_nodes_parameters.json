@@ -7,5 +7,9 @@
     {
         "ParameterKey": "SshKey",
         "ParameterValue": "mircea-proj-5"
+    },
+    {
+        "ParameterKey":"DesiredInstances",
+        "ParameterValue":2
     }
 ]

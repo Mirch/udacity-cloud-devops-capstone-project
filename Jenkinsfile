@@ -1,10 +1,10 @@
 node {
     def registry = 'mirch/udacity-capstone-project'
-    stage('Checkout') {
+    stage('Checking out git repo') {
       echo 'Checkout...'
       checkout scm
     }
-    stage('Environment') {
+    stage('Checking environment') {
       echo 'Checking environment...'
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"

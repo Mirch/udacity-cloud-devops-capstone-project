@@ -10,6 +10,6 @@
     },
     {
         "ParameterKey":"DesiredInstances",
-        "ParameterValue":2
+        "ParameterValue": "2"
     }
 ]

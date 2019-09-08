@@ -33,6 +33,7 @@ node {
             sh "kubectl apply -f aws/capstone-app-deployment.yml"
             sh "kubectl get nodes"
             sh "kubectl get pods"
+            sh "./aws/update_worker_nodes.sh"
         }
       }
     }

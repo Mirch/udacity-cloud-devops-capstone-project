@@ -16,7 +16,7 @@ node {
     }
     stage('Building image') {
 	    echo 'Building Docker image...'
-      	    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 	     	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "docker build -t ${registry} ."
 	     	sh "docker tag ${registry} ${registry}"
@@ -30,6 +30,7 @@ node {
             sh "aws eks --region eu-central-1 update-kubeconfig --name CapstoneEKS-VUUZkwHTDVPa"
             sh "kubectl apply -f aws/aws-auth-cm.yaml"
             sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
+            sh "kubectl apply -f aws/capstone-app-deployment.yml"
             sh "kubectl get nodes"
             sh "kubectl get pods"
         }

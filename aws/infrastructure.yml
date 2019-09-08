@@ -27,7 +27,7 @@ Resources:
       EnableDnsHostnames: true
       Tags:
       - Key: Name
-        Value: !Sub EnvironmentName
+        Value: !Sub ${EnvironmentName}
   InternetGateway:
     Type: "AWS::EC2::InternetGateway"
   InternetGatewayAttachment:
@@ -96,6 +96,20 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       GroupDescription: Default security group for EKS.
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 1025
+          ToPort: 65535
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 1025
+          ToPort: 65535
+          CidrIp: 0.0.0.0/0
 Outputs:
   VpcId:
     Description: The VPC id.

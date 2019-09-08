@@ -3,6 +3,7 @@ FROM node:8 as react-build
 WORKDIR /app
 COPY . ./
 RUN yarn
+ergeGRER#$%#$%@#=====
 RUN yarn build
 
 # Stage 2 - the production environment

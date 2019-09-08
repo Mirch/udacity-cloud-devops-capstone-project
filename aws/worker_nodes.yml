@@ -60,7 +60,7 @@ Resources:
   NodesAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      DesiredCapacity: 2
+      DesiredCapacity: 3
       LaunchConfigurationName: !Ref LaunchConfiguration
       MinSize: 1
       MaxSize: 4
@@ -96,8 +96,8 @@ Resources:
     Properties:
       AssociatePublicIpAddress: 'true'
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: ami-0f64557dd6506a4aa
-      InstanceType: t2.micro
+      ImageId: ami-01ffee931e45bb6bf
+      InstanceType: m3.medium
       KeyName: !Ref SshKey
       SecurityGroups:
       - !Ref NodesSecurityGroup
